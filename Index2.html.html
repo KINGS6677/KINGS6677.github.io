@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <style>
+        h2{
+            background-color: rgb(255, 0, 0);
+        }
+    </style>
+<!-- Registration form card -->
+    <aside class="card">
+      <h2 style="margin-top:0;margin-bottom:8px">Customer Registration</h2>
+      <p class="note">Required fields are marked with *</p>
+
+      <form id="regForm" class="form-grid" novalidate>
+        <div class="row">
+          <div>
+            <label for="fname">First name *</label>
+            <input id="fname" name="fname" type="text" required minlength="2" placeholder="Firstname">
+          </div>
+          <div>
+            <label for="lname">Last name *</label>
+            <input id="lname" name="lname" type="text" required minlength="2" placeholder="Surname">
+          </div>
+        </div>
+
+        <div>
+          <label for="email">Email address *</label>
+          <input id="email" name="email" type="email" required placeholder="you@email.com">
+        </div>
+
+        <div class="row">
+          <div>
+            <label for="password">Password *</label>
+            <input id="password" name="password" type="password" required minlength="8" placeholder="At least 8 characters">
+          </div>
+          <div>
+            <label for="confirm">Confirm password *</label>
+            <input id="confirm" name="confirm" type="password" required minlength="8" placeholder="Repeat password">
+          </div>
+        </div>
+
+        <div>
+          <label for="phone">Phone</label>
+          <input id="phone" name="phone" type="tel" pattern="[0-9+\-()\s]{7,20}" placeholder="+254 7xx xxx xxx">
+        </div>
+
+        <div>
+          <label for="address">Address</label>
+          <textarea id="address" name="address" placeholder="Street, building, etc"></textarea>
+        </div>
+
+        <div class="row">
+          <div>
+            <label for="city">City</label>
+            <input id="city" name="city" type="text">
+          </div>
+          <div>
+            <label for="country">Country</label>
+            <select id="country" name="country">
+              <option value="">Select country</option>
+              <option>Kenya</option>
+              <option>United Kingdom</option>
+              <option>United States</option>
+              <option>India</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label><input type="checkbox" id="terms" required> I agree to the <a href="#">terms & conditions</a> *</label>
+        </div>
+
+        <div class="actions">
+          <button type="submit" class="btn">Create account</button>
+          <button type="reset" class="btn ghost">Reset</button>
+        </div>
+
+        <p id="msg" class="note" style="margin-top:6px"></p>
+      </form>
+
+      <script>
+        const form = document.getElementById('regForm');
+        const pw = document.getElementById('password');
+        const conf = document.getElementById('confirm');
+        const msg = document.getElementById('msg');
+
+        function checkPasswordMatch(){
+          if(pw.value && conf.value && pw.value !== conf.value){
+            conf.setCustomValidity('Passwords do not match');
+            return false;
+          } else {
+            conf.setCustomValidity('');
+            return true;
+          }
+        }
+
+        pw.addEventListener('input', checkPasswordMatch);
+        conf.addEventListener('input', checkPasswordMatch);
+
+        form.addEventListener('submit', (e)=>{
+          e.preventDefault();
+          msg.textContent = '';
+          if(!form.reportValidity()) return;
+          if(!checkPasswordMatch()){
+            msg.textContent = 'Please ensure passwords match.'; return;
+          }
+
+          // Simulate successful registration (replace with real submission)
+          const data = new FormData(form);
+          const payload = Object.fromEntries(data.entries());
+          console.log('Registration payload:', payload);
+          msg.textContent = 'Registration successful — check console for payload (demo).';
+          form.reset();
+        });
+      </script>
+    </aside>
+  </div>
+</body>
+</html><html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Customer Registration Form</title>
+  <link rel="stylesheet" href="styles.css"> 
+    <style>
+        body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        padding: 20px;
+        }
+        .card {
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        padding: 20px;
+        max-width: 600px;
+        margin: auto;
+        }
+        h2 {
+        margin-bottom: 10px;
+        }
+        .note {
+        font-size: 0.9em;
+        color: #666;
+        }
+        .form-grid {
+        display: grid;
+        gap: 15px;
+        }
+        .row {
+        display: flex;
+        gap: 15px;
+        }
+        label {
+        display: block;
+        margin-bottom: 5px;
+        }
+        input, select, textarea {
+        width: 100%;
+        padding: 8px;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        }
+        textarea {
+        resize: vertical;
+        }
+        .actions {
+        display: flex;
+        gap: 10px;
+        }
+        .btn {
+        padding: 10px 15px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        }
+        .btn.ghost {
+        background: transparent;
+        border: 1px solid #ccc;
+        }
+        .btn:hover {
+        background-color: #007BFF;
+        color: white;
+        }
+        .btn.ghost:hover {
+        background-color: #f4f4f4;
+        }
+        .error {
+        border-color: red;
+        }   
+        .error-message {
+        color: red;
+        font-size: 0.85em;
+        }
+    </style>
+</head>
+<body>
+ </body>
+ </html>
